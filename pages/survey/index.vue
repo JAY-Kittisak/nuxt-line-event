@@ -30,7 +30,7 @@
                 rounded
                 color="primary"
                 dark
-                class="w-100 my-btn"
+                class="w-100 my-btn mt-200"
                 @click="next"
               >
                 Next
@@ -48,12 +48,13 @@ export default {
   data() {
     return {
       form: {
-        survey1: 5,
+        survey1: this.$store.getters.getSurvey.survey1
       },
     };
   },
   methods: {
     next() {
+      this.$store.dispatch('setSurvey',this.form)
       this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/survey/line:0001.json`,
           this.form
         ).then((res) => {
@@ -90,8 +91,5 @@ export default {
       height: 5px;
     }
   }
-}
-.my-btn{
-  margin-top: 100px;
 }
 </style>

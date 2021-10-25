@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar color="primary" dense flat dark>
-      <v-toolbar-title> Register </v-toolbar-title>
+      <v-toolbar-title> Survey </v-toolbar-title>
     </v-app-bar>
     <v-container class="pt-0 pb-0">
       <v-row>
@@ -9,24 +9,15 @@
           <div class="set-padding">
             <div class="text-center mt-16">
               <img src="~/assets/logo-jsr.png" alt="" width="236px" />
-              <h1 class="text-title mt-10">Welcome, {{ name }}</h1>
+              <h1 class="text-title mt-10">Thank you</h1>
               <p class="mt-10">
-                Welocme to the event,<br />
-                Tons of workshop are waitting for you.<br />
-                We hope you have a good time here.
+                thanks for completing this survey,<br />
+                your feedback will help us improve the.<br />
+                next event.
               </p>
             </div>
-            <v-btn
-              rounded
-              color="primary"
-              dark
-              class="w-100 my-btn btn-reg mt-100"
-              @click="workshop"
-            >
-              Register Workshop
-            </v-btn>
             <div
-              class="w-100 text-center my-btn outlined text-primary mt-7"
+              class="w-100 text-center my-btn outlined text-primary mt-200"
               @click="close"
             >
               Close
@@ -40,11 +31,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: this.$store.getters.getRegister.firstname,
-    };
-  },
   methods: {
     workshop() {
       this.$router.push("/workshop");
