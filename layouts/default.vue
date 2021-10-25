@@ -31,6 +31,9 @@ export default {
 .text-primary {
   color: #1a56be;
 }
+.bold{
+  font-weight: bold;
+}
 .text-main{
   font-size: 20px;
 }
@@ -47,5 +50,14 @@ export default {
   height: auto !important;
   padding: 10px 0 !important;
   font-weight: bold;
+  min-height: 50px;
+  &.outlined{
+    border: 1px solid #1a56be;
+    border-radius: 28px;
+    line-height: normal;
+  }
+}
+.set-padding{
+  padding: 0 10px;
 }
 </style>

@@ -196,6 +196,8 @@ export default {
         ).then((res) => {
           console.log(res.status)
           this.$router.push('/register/done')
+        }).catch((err) => {
+          console.log(err)
         })
       }
     }
