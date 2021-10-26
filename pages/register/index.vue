@@ -10,11 +10,9 @@
             Step 1 of 2
           </div>
         </v-col>
-        <v-col cols="12" class="text-center">
-          <v-avatar size="155">
+        <v-col cols="12" class="text-center pb-0 profile-img">
             <img v-if="getLine.pictureUrl == ''"  src="~/assets/catSeal.jpg" alt="" width="155" />
             <img v-else :src="getLine.pictureUrl" alt="" width="155" />
-          </v-avatar>
         </v-col>
         <v-col cols="12" class="text-center pt-2 pb-0">{{getLine.displayName}}</v-col>
         <v-col cols="12" class="text-center mt-10 my-btn">
@@ -81,6 +79,7 @@ export default {
       if(liff.isLoggedIn()){
         liff.getProfile().then(profile => {
           this.$store.dispatch('setLine',profile);
+          this.isDone()
           console.log(getLine.displayName)
         })
       }else{
@@ -91,11 +90,6 @@ export default {
   computed:{
     getLine(){
       return this.$store.getters.getLine;
-      // profile: {
-      //   pictureUrl: this.$store.getters.getLine.pictureUrl,
-      //   displayName: this.$store.getters.getLine.displayName,
-      //   userId: this.$store.getters.getLine.userId,
-      // },
     }
   },
   data: () => {
@@ -108,6 +102,15 @@ export default {
     };
   },
   methods: {
+    isDone(){
+      this.$axios
+        .get(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/members/${this.$store.getters.getLine.userId}/profile.json`)
+        .then((res) => {
+          if(res.data != null){
+            this.$router.push('/register/done')
+          }
+        })
+    },
     chooseGender(gender) {
       this.form.gender = gender;
     },
@@ -146,6 +149,11 @@ export default {
 <style lang="scss" scoped>
 .v-form {
   padding: 0 20px;
+}
+.profile-img{
+  img{
+    border-radius: 50%;
+  }
 }
 .gender-group {
   font-weight: lighter;

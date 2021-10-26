@@ -49,7 +49,9 @@ export default {
     workshop() {
       this.$router.push("/workshop");
     },
-    close() {},
+    close() {
+      liff.closeWindow();
+    },
   },
 };
 </script>
