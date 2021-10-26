@@ -12,11 +12,11 @@
         </v-col>
         <v-col cols="12" class="text-center">
           <v-avatar size="155">
-            <img v-if="profile.pictureUrl == ''"  src="~/assets/catSeal.jpg" alt="" width="155" />
-            <img v-else :src="profile.pictureUrl" alt="" width="155" />
+            <img v-if="getLine.pictureUrl == ''"  src="~/assets/catSeal.jpg" alt="" width="155" />
+            <img v-else :src="getLine.pictureUrl" alt="" width="155" />
           </v-avatar>
         </v-col>
-        <v-col cols="12" class="text-center pt-2 pb-0">{{profile.displayName}}</v-col>
+        <v-col cols="12" class="text-center pt-2 pb-0">{{getLine.displayName}}</v-col>
         <v-col cols="12" class="text-center mt-10 my-btn">
           <v-form>
             <v-text-field
@@ -80,23 +80,26 @@ export default {
     }).then(() => {
       if(liff.isLoggedIn()){
         liff.getProfile().then(profile => {
-          this.profile.pictureUrl = profile.pictureUrl
-          this.profile.displayName = profile.displayName
-          this.profile.userId = profile.userId
-          console.log(this.profile.displayName,"and",profile.displayName)
+          this.$store.dispatch('setLine',profile);
+          console.log(getLine.displayName)
         })
       }else{
         liff.login()
       }
     })
   },
+  computed:{
+    getLine(){
+      return this.$store.getters.getLine;
+      // profile: {
+      //   pictureUrl: this.$store.getters.getLine.pictureUrl,
+      //   displayName: this.$store.getters.getLine.displayName,
+      //   userId: this.$store.getters.getLine.userId,
+      // },
+    }
+  },
   data: () => {
     return {
-      profile: {
-        pictureUrl: '',
-        displayName: 'Display name',
-        userId: '',
-      },
       form: {
         firstname: errName[0] ? errName[errName.length -1]: "",
         lastname: errLastName[0] ? errLastName[errLastName.length -1]:"",

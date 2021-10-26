@@ -191,7 +191,7 @@ export default {
     register() {
       if(this.validate()){
         this.$store.dispatch('setRegister',this.form)
-        this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/members/line:0001/profile.json`,
+        this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/members/${this.$store.getters.getLine.userId}/profile.json`,
           this.$store.getters.getRegister
         ).then((res) => {
           console.log(res.status)
