@@ -12,11 +12,11 @@
         </v-col>
         <v-col cols="12" class="text-center">
           <v-avatar size="155">
-            <img v-if="pictureUrl == ''"  src="~/assets/catSeal.jpg" alt="" width="155" />
-            <img v-else :src="pictureUrl" alt="" width="155" />
+            <img v-if="profile.pictureUrl == ''"  src="~/assets/catSeal.jpg" alt="" width="155" />
+            <img v-else :src="profile.pictureUrl" alt="" width="155" />
           </v-avatar>
         </v-col>
-        <v-col cols="12" class="text-center pt-2 pb-0">{{displayName}}</v-col>
+        <v-col cols="12" class="text-center pt-2 pb-0">{{profile.displayName}}</v-col>
         <v-col cols="12" class="text-center mt-10 my-btn">
           <v-form>
             <v-text-field
