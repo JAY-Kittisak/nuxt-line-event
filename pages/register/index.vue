@@ -12,10 +12,11 @@
         </v-col>
         <v-col cols="12" class="text-center">
           <v-avatar size="155">
-            <img src="~/assets/catSeal.jpg" alt="" width="155" />
+            <img v-if="pictureUrl == ''"  src="~/assets/catSeal.jpg" alt="" width="155" />
+            <img v-else :src="pictureUrl" alt="" width="155" />
           </v-avatar>
         </v-col>
-        <v-col cols="12" class="text-center pt-2 pb-0"> Display name </v-col>
+        <v-col cols="12" class="text-center pt-2 pb-0">{{displayName}}</v-col>
         <v-col cols="12" class="text-center mt-10 my-btn">
           <v-form>
             <v-text-field
@@ -73,8 +74,28 @@
   let errGender = [1];
 
 export default {
+  mounted(){
+    liff.init({
+      liffId: '1656569119-4DE3kwDG'
+    }).then(() => {
+      if(liff.isLoggedIn()){
+        liff.getProfile().then(profile => {
+          this.profile.pictureUrl = profile.pictureUrl
+          this.profile.displayName = profile.displayName
+          this.profile.userId = profile.userId
+        })
+      }else{
+        liff.login()
+      }
+    })
+  },
   data: () => {
     return {
+      profile: {
+        pictureUrl: '',
+        displayName: 'Display name',
+        userId: '',
+      },
       form: {
         firstname: errName[0] ? errName[errName.length -1]: "",
         lastname: errLastName[0] ? errLastName[errLastName.length -1]:"",
