@@ -83,6 +83,7 @@ export default {
           this.profile.pictureUrl = profile.pictureUrl
           this.profile.displayName = profile.displayName
           this.profile.userId = profile.userId
+          console.log(this.profile.displayName,"and",profile.displayName)
         })
       }else{
         liff.login()
