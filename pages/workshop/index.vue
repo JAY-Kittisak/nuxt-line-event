@@ -99,8 +99,7 @@ export default {
     },
     next() {
       if(this.index == this.workshops.length - 1){
-        // api save registsr workshop
-        this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/workshops/line:0001.json`,
+        this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/workshops/${this.$store.getters.getLine.userId}.json`,
           {...this.selectedWorkshop}
         ).then((res) => {
           console.log(res.status)

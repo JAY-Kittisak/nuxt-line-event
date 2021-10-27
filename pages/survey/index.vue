@@ -45,6 +45,16 @@
 
 <script>
 export default {
+  mounted() {
+    liff.init({liffId: "1656569119-jzv2rQ3w"})
+      .then(() => {
+        if (liff.isLoggedIn()) {
+           liff.getProfile().then((profile) => {
+             this.$store.dispatch("setLine", profile);
+           })
+        }
+      })
+  },
   data() {
     return {
       form: {
@@ -55,7 +65,7 @@ export default {
   methods: {
     next() {
       this.$store.dispatch('setSurvey',this.form)
-      this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/survey/line:0001.json`,
+      this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/survey/${this.$store.getters.getLine.userId}.json`,
           this.form
         ).then((res) => {
           console.log(res.status)

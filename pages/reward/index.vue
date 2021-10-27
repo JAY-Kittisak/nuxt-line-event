@@ -194,7 +194,6 @@ export default {
                 `https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/members/${this.$store.getters.getLine.userId}/profile.json`
               )
               .then((res) => {
-                console.log("res.data", res.data);
                 if (res.data != null) {
                   this.$store.dispatch("setUser", res.data);
                 }
@@ -204,15 +203,13 @@ export default {
                 `https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/reward/${this.$store.getters.getLine.userId}.json`
               )
               .then((res) => {
-                console.log("res.data reward", res.data);
                 if (res.data != null) {
                   this.stamps = res.data;
                 }
               });
           });
         } else {
-          // liff.login();
-          console.log("liff.login");
+          liff.login();
         }
       });
   },

@@ -67,7 +67,7 @@ export default {
   methods: {
     submit() {
       this.$store.dispatch('setSurvey',this.form)
-      this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/survey/line:0001.json`,
+      this.$axios.patch(`https://nuex-line-event-default-rtdb.asia-southeast1.firebasedatabase.app/survey/${this.$store.getters.getLine.userId}.json`,
           this.form
         ).then((res) => {
           console.log(res.status)
