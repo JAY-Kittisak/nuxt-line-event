@@ -52,6 +52,8 @@ export default {
            liff.getProfile().then((profile) => {
              this.$store.dispatch("setLine", profile);
            })
+        } else {
+          liff.login();
         }
       })
   },
@@ -73,6 +75,7 @@ export default {
         }).catch((err) => {
           console.log(err)
         })
+        this.$router.push('/survey/step2')
     },
   },
 };

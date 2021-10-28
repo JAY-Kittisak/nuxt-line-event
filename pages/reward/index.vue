@@ -43,10 +43,9 @@
       <v-row>
         <v-col>
           <v-btn
-            v-if="isDone == false"
+            :disabled="isDone"
             rounded
             color="primary"
-            dark
             class="w-100 my-btn scan"
             @click="scan"
           >
@@ -163,10 +162,9 @@
             Scan to collect
           </v-btn>
           <v-btn
-            v-if="isDone == true"
+            :disabled="!isDone"
             rounded
             color="primary"
-            dark
             class="w-100 my-btn mt-6"
             @click="next"
           >
@@ -347,10 +345,12 @@ export default {
     }
   }
   &.end {
-    background: #1a56be;
+    background: #fff;
     span {
       font-size: 16px;
-      color: #fff;
+      color: #1a56be;
+    }&.active{
+      background: #1a56be;
     }
   }
   span {
